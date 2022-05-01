@@ -1,10 +1,8 @@
-import Classification
+# Model Evaluating
 from sklearn.metrics import confusion_matrix
 from sklearn import metrics
 
-def model_evaluation():
-    y_pred_log, y_pred_svm, y_pred_decision, y_test = Classification.classification()
-    
+def model_evaluation(y_pred_log, y_pred_svm, y_pred_decision, y_test):
     # Making the Confusion Matrix for Logistic Regression
     cm_log = confusion_matrix(y_test, y_pred_log)
     
@@ -24,4 +22,4 @@ def model_evaluation():
     #Model Accuracy for DecisionTree
     DecisionTree_accuracy = metrics.accuracy_score(y_test, y_pred_decision)
     
-    return logistic_regression_accuracy, svm_accuracy, DecisionTree_accuracy
+    return logistic_regression_accuracy, svm_accuracy, DecisionTree_accuracy, cm_log, cm_svm, cm_decision

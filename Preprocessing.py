@@ -7,7 +7,7 @@ from sklearn.preprocessing  import StandardScaler
 def preprocessing():
     # Importing the dataset
     dataset = pd.read_csv('Tumor Cancer Prediction_Data.csv')
-    x = dataset.iloc[:, :-1].values
+    x = dataset.iloc[:, 1:-1].values
     y = dataset.iloc[:,-1]
 
     # Encoding categorical data

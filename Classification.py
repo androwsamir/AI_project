@@ -1,12 +1,11 @@
-import Preprocessing
+# Classification
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing  import StandardScaler
 
 
-def classification():
-    x_train , x_test , y_train , y_test = Preprocessing.preprocessing()
-    
+def classification(x_train , x_test , y_train):
     # Fitting Logistic Regression to the Training set
     classifier_log = LogisticRegression(random_state = 0)
     
@@ -25,4 +24,4 @@ def classification():
     y_pred_svm = classifier_svm.predict(x_test)
     y_pred_decision = classifier_decision.predict(x_test)
     
-    return y_pred_log, y_pred_svm, y_pred_decision, y_test
+    return y_pred_log, y_pred_svm, y_pred_decision, classifier_log, classifier_svm, classifier_decision
