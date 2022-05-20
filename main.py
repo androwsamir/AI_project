@@ -6,6 +6,7 @@ import Classification
 import Model_Evaluation
 from sklearn.preprocessing  import StandardScaler
 from sklearn.ensemble import VotingClassifier
+
     
 def main():
     Preprocess = Preprocessing.preprocess()
@@ -16,6 +17,13 @@ def main():
     y_pred_log, y_pred_svm, y_pred_decision, vc_clf ,classifier_log , classifier_svm ,  classifier_decision ,  y_pred_vc = Classification_1.classification(x_train , x_test , y_train)
     logistic_regression_accuracy, svm_accuracy, DecisionTree_accuracy, cm_log, cm_svm, cm_decision , vc_accuracy = Model_Evaluation_1.model_evaluation( y_pred_log, y_pred_svm, y_pred_decision, y_test , y_pred_vc)
     
+    print("Logistic Regression Accuracy : ",logistic_regression_accuracy, end = '\n')
+    print("Confusion Matrix for Logistic Regression : \n", cm_log, end = '\n')
+    print("SVM Accuracy : ", svm_accuracy, end = '\n')
+    print("Confusion Matrix for SVM : \n", cm_svm, end = '\n')
+    print("Decision Tree Accuracy : ", DecisionTree_accuracy, end = '\n')
+    print("Confusion Matrix for DecisionTree : \n", cm_decision, end = '\n')
+    
     filename = input()
     filename.encode('utf-8').strip()
     x_input = Preprocess.preprocess_input(filename)
@@ -23,15 +31,16 @@ def main():
     list1 = []
     for ele in predict_ :
         print(ele)
-  #  for ele in predict_ :
-   #     if(ele == '0'):
-    #        list1.append('B')
-     #   else:
-      #      list1.append('M')
-    
-   # list2 = ([list1])
-    #print(list2)
-        
+# =============================================================================
+#     for ele in predict_ :
+#         if(ele == '0'):
+#             list1.append('B')
+#         else:
+#             list1.append('M')
+#     
+#     list2 = ([list1])
+#     print(list2)
+# =============================================================================
 # =============================================================================
 #     list1 = []
 #     for element in range (30):
@@ -39,7 +48,6 @@ def main():
 #         list1.append(ele)
 #     list2 = ([list1])
 # =============================================================================
-    
 # =============================================================================
 #     sc = StandardScaler()
 #     list2 = sc.fit_transform(list2)

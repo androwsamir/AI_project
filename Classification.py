@@ -6,6 +6,7 @@ from sklearn.preprocessing  import StandardScaler
 from sklearn.ensemble import VotingClassifier
 
 class Classification_:
+    
     def classification(self, x_train , x_test , y_train):
         # Fitting Logistic Regression to the Training set
         classifier_log = LogisticRegression(random_state = 0)
@@ -20,6 +21,7 @@ class Classification_:
         classifier_svm.fit(x_train,y_train)
         classifier_decision.fit(x_train,y_train)
         
+        # Voting Module
         vc = VotingClassifier([('log',classifier_log),('svm',classifier_svm),('tree',classifier_decision)],voting = 'hard')
         vc_clf = vc.fit(x_train,y_train)
         
@@ -35,7 +37,6 @@ class Classification_:
         x = max (svm_accuracy, logistic_regression_accuracy , vc_accuracy , DecisionTree_accuracy) 
         if x == svm_accuracy :
             svm_pre = classifier_svm.predict(x_input)
-            
             return svm_pre
         elif x == logistic_regression_accuracy :
             log_pre = classifier_log.predict(x_input)
@@ -46,8 +47,3 @@ class Classification_:
         else :
             des_pre = classifier_decision.predict(x_input)
             return  des_pre
-        
-
-        
-        
-    

@@ -3,6 +3,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn import metrics
 
 class Model_Evaluation_:
+    
     def model_evaluation(self, y_pred_log, y_pred_svm, y_pred_decision, y_test , y_pred_vc):
         # Making the Confusion Matrix for Logistic Regression
         cm_log = confusion_matrix(y_test, y_pred_log)
