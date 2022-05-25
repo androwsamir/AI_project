@@ -13,8 +13,8 @@ def main():
     Classification_1 = Classification.Classification_()
     Model_Evaluation_1 = Model_Evaluation.Model_Evaluation_()
     
-    x_train, x_test, y_train, y_test = Preprocess.preprocessing()
-    y_pred_log, y_pred_svm, y_pred_decision, vc_clf ,classifier_log , classifier_svm ,  classifier_decision ,  y_pred_vc = Classification_1.classification(x_train , x_test , y_train)
+    x_train, x_test, y_train, y_test, x_val, y_val = Preprocess.preprocessing()
+    y_pred_log, y_pred_svm, y_pred_decision, vc_clf ,classifier_log , classifier_svm ,  classifier_decision ,  y_pred_vc = Classification_1.classification(x_train , x_test , y_train, x_val, y_val)
     logistic_regression_accuracy, svm_accuracy, DecisionTree_accuracy, cm_log, cm_svm, cm_decision , vc_accuracy = Model_Evaluation_1.model_evaluation( y_pred_log, y_pred_svm, y_pred_decision, y_test , y_pred_vc)
     
     print("Logistic Regression Accuracy : ",logistic_regression_accuracy, end = '\n')

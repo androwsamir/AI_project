@@ -4,18 +4,19 @@ from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing  import StandardScaler
 from sklearn.ensemble import VotingClassifier
+from sklearn import metrics
 
 class Classification_:
     
-    def classification(self, x_train , x_test , y_train):
+    def classification(self, x_train , x_test , y_train, x_val, y_val):
         # Fitting Logistic Regression to the Training set
-        classifier_log = LogisticRegression(random_state = 0)
+        classifier_log = LogisticRegression(random_state=0)
         
         # Fitting SVM to the Training set
-        classifier_svm = SVC(kernel = 'linear', random_state = 0)
+        classifier_svm = SVC(kernel = 'linear', random_state = 0, max_iter = -1)
         
         # Fitting DecisionTree to the Training set
-        classifier_decision = DecisionTreeClassifier(criterion = 'entropy', random_state=0)
+        classifier_decision = DecisionTreeClassifier(criterion = 'entropy', random_state=0, max_depth = 1)
         
         classifier_log.fit(x_train,y_train)
         classifier_svm.fit(x_train,y_train)
@@ -30,6 +31,42 @@ class Classification_:
         y_pred_svm = classifier_svm.predict(x_test)
         y_pred_decision = classifier_decision.predict(x_test)
         y_pred_vc = vc_clf.predict(x_test)
+        
+        # Predicting the Training set results
+        y_pred_log_train = classifier_log.predict(x_train)
+        y_pred_svm_train = classifier_svm.predict(x_train)
+        y_pred_decision_train = classifier_decision.predict(x_train)
+        y_pred_vc_train = vc_clf.predict(x_train)
+        
+        # Predicting the Validation set results
+        y_pred_log_val = classifier_log.predict(x_val)
+        y_pred_svm_val = classifier_svm.predict(x_val)
+        y_pred_decision_val = classifier_decision.predict(x_val)
+        y_pred_vc_val = vc_clf.predict(x_val)
+        
+        #---------------------------------------------------------------#
+        logistic_regression_accuracy_train = metrics.accuracy_score(y_train, y_pred_log_train)
+        
+        #Model Accuracy for SVM
+        svm_accuracy_train = metrics.accuracy_score(y_train, y_pred_svm_train)
+        
+        #Model Accuracy for DecisionTree
+        DecisionTree_accuracy_train = metrics.accuracy_score(y_train, y_pred_decision_train)
+        
+        #Model Accuracy for  Voting 
+        vc_accuracy_train = metrics.accuracy_score(y_train , y_pred_vc_train)
+        
+        #---------------------------------------------------------------#
+        logistic_regression_accuracy_val = metrics.accuracy_score(y_val, y_pred_log_val)
+        
+        #Model Accuracy for SVM
+        svm_accuracy_val = metrics.accuracy_score(y_val, y_pred_svm_val)
+        
+        #Model Accuracy for DecisionTree
+        DecisionTree_accuracy_val = metrics.accuracy_score(y_val, y_pred_decision_val)
+        
+        #Model Accuracy for  Voting 
+        vc_accuracy_val = metrics.accuracy_score(y_val , y_pred_vc_val)
         
         return y_pred_log, y_pred_svm, y_pred_decision, vc_clf ,classifier_log , classifier_svm ,  classifier_decision ,  y_pred_vc
     
