@@ -6,6 +6,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.datasets import make_blobs
 from matplotlib import pyplot
 from pandas import DataFrame
+import random
 
 
 def outliers (df, ft):
@@ -45,7 +46,26 @@ class preprocess:
         
         # Splitting the d ataset into the Training set and Test set
         x_train, x_1, y_train, y_1 = train_test_split(x, y, test_size = 0.25)
-        x_test, x_val, y_test, y_val = train_test_split(x_1, y_1, test_size = 0.5)
+        x_val = []
+        y_val = []
+        x_test = []
+        y_test = []   
+        flag = 0
+        for i in x_1:
+            if flag == 0 :
+                x_val.append(i)
+                flag = 1
+            else :
+                x_test.append(i)
+                flag = 0
+        flag = 0
+        for i in y_1:
+            if flag == 0 :
+                y_val.append(i)
+                flag = 1
+            else :
+                y_test.append(i)
+                flag = 0
         
         # Feature Scalling
         sc_x = StandardScaler()

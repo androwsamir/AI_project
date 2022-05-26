@@ -9,14 +9,15 @@ from sklearn import metrics
 class Classification_:
     
     def classification(self, x_train , x_test , y_train, x_val, y_val):
+        
         # Fitting Logistic Regression to the Training set
-        classifier_log = LogisticRegression(random_state=0)
+        classifier_log = LogisticRegression(solver = 'liblinear', penalty ='l1', random_state = 0)
         
         # Fitting SVM to the Training set
-        classifier_svm = SVC(kernel = 'linear', random_state = 0, max_iter = -1)
+        classifier_svm = SVC(kernel = 'linear', random_state = 0)
         
         # Fitting DecisionTree to the Training set
-        classifier_decision = DecisionTreeClassifier(criterion = 'entropy', random_state=0, max_depth = 1)
+        classifier_decision = DecisionTreeClassifier(criterion = 'entropy', random_state=0, max_depth = 3)
         
         classifier_log.fit(x_train,y_train)
         classifier_svm.fit(x_train,y_train)
@@ -67,6 +68,16 @@ class Classification_:
         
         #Model Accuracy for  Voting 
         vc_accuracy_val = metrics.accuracy_score(y_val , y_pred_vc_val)
+        
+        print("Logistic Regression Accuracy Train : ",logistic_regression_accuracy_train, end = '\n')        
+        print("SVM Accuracy Train : ", svm_accuracy_train, end = '\n')
+        print("Decision Tree Accuracy Train : ", DecisionTree_accuracy_train, end = '\n')
+        print("Voting Module Accuracy Train : ",vc_accuracy_train , end = '\n')
+        
+        print("Logistic Regression Accuracy Validation : ",logistic_regression_accuracy_val, end = '\n')        
+        print("SVM Accuracy Validation : ", svm_accuracy_val, end = '\n')
+        print("Decision Tree Accuracy Validation : ", DecisionTree_accuracy_val, end = '\n')
+        print("Voting Module Accuracy Validation : ",vc_accuracy_val , end = '\n')
         
         return y_pred_log, y_pred_svm, y_pred_decision, vc_clf ,classifier_log , classifier_svm ,  classifier_decision ,  y_pred_vc
     

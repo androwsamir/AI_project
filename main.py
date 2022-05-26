@@ -23,6 +23,7 @@ def main():
     print("Confusion Matrix for SVM : \n", cm_svm, end = '\n')
     print("Decision Tree Accuracy : ", DecisionTree_accuracy, end = '\n')
     print("Confusion Matrix for DecisionTree : \n", cm_decision, end = '\n')
+    print("Voting Module Accuracy : ",vc_accuracy , end = '\n')
     
     filename = input()
     filename.encode('utf-8').strip()
@@ -31,79 +32,7 @@ def main():
     list1 = []
     for ele in predict_ :
         print(ele)
-# =============================================================================
-#     for ele in predict_ :
-#         if(ele == '0'):
-#             list1.append('B')
-#         else:
-#             list1.append('M')
-#     
-#     list2 = ([list1])
-#     print(list2)
-# =============================================================================
-# =============================================================================
-#     list1 = []
-#     for element in range (30):
-#         ele = float(input())+xzcxzc V
-#         list1.append(ele)
-#     list2 = ([list1])
-# =============================================================================
-# =============================================================================
-#     sc = StandardScaler()
-#     list2 = sc.fit_transform(list2)
-#     if vc_clf.predict(list2) == 0 :
-#         print("B")
-#     else :
-#         print("M")
-#     
-# =============================================================================
-# =============================================================================
-#     if z_pred_log == 0 :
-#         print ("Logistic Regression predict : B\n")
-#     else:
-#         print("Logistic Regression predict : M\n")
-#         
-#     if z_pred_svm == 0 :
-#         print ("SVM predict : B\n")
-#     else:
-#         print("SVM predict : M\n")
-#         
-#     if z_pred_decision == 0 :
-#         print ("Decision Tree predict : B\n")
-#     else:
-#         print("Decision Tree predict : M\n")
-#         
-# =============================================================================
-# =============================================================================
-#     if z_pred_log == z_pred_svm
-#         if z_pred_log == 0 :
-#             print ("Logistic Regression predict : B\n")
-#         else:
-#             print("Logistic Regression predict : M\n")
-#     
-#     elif z_pred_log == z_pred_decision:
-#         if z_pred_log == 0 :
-#             print ("Logistic Regression predict : B\n")
-#         else:
-#             print("Logistic Regression predict : M\n")
-#             
-#     elif z_pred_svm == z_pred_decision :
-#         if z_pred_svm == 0 :
-#             print ("SVM predict : B\n")
-#         else:
-#             print("SVM predict : M\n")
-#                    
-#     print (z_pred_log, end ='\n')
-#     print (z_pred_svm, end ='\n')
-#     print (z_pred_decision, end ='\n')
-#     
-#     print("Logistic Regression Accuracy : ",logistic_regression_accuracy, end = '\n')
-#     print("Confusion Matrix for Logistic Regression : \n", cm_log, end = '\n')
-#     print("SVM Accuracy : ", svm_accuracy, end = '\n')
-#     print("Confusion Matrix for SVM : \n", cm_svm, end = '\n')
-#     print("Decision Tree Accuracy : ", DecisionTree_accuracy, end = '\n')
-#     print("Confusion Matrix for DecisionTree : \n", cm_decision, end = '\n')
-# =============================================================================
+
 if __name__ == '__main__':
     main()
     
