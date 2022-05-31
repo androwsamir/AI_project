@@ -5,9 +5,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.datasets import make_blobs
 from matplotlib import pyplot
-from pandas import DataFrame
-import random
-
 
 def outliers (df, ft):
     Q1 = df[ft].quantile(0.25)
@@ -30,50 +27,32 @@ class preprocess:
     def preprocessing(self):
         # Importing the dataset
         dataset1 = pd.read_csv('Tumor Cancer Prediction_Data.csv')
-        
+         
         index_list = []
         l = ['F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12','F13', 'F14', 'F15','F16', 'F17','F18','F19','F20','F21','F22','F23','F24','F25','F26','F27','F28','F29','F30']
         for feature in l :
             index_list.extend(outliers(dataset1,feature))
         dataset = remove(dataset1,index_list)
         
-        x = dataset.iloc[:, 1:-1].values
-        y = dataset.iloc[:, -1]
+         
+        dataset.drop('Index',axis = 'columns',inplace = True)
         
+        x = dataset.iloc[:, :-1].values
+        y = dataset.iloc[:, -1]  
+               
         # Encoding categorical data
         labelencoder_y = LabelEncoder()
         y = labelencoder_y.fit_transform(y)
         
         # Splitting the d ataset into the Training set and Test set
-        x_train, x_1, y_train, y_1 = train_test_split(x, y, test_size = 0.25)
-        x_val = []
-        y_val = []
-        x_test = []
-        y_test = []   
-        flag = 0
-        for i in x_1:
-            if flag == 0 :
-                x_val.append(i)
-                flag = 1
-            else :
-                x_test.append(i)
-                flag = 0
-        flag = 0
-        for i in y_1:
-            if flag == 0 :
-                y_val.append(i)
-                flag = 1
-            else :
-                y_test.append(i)
-                flag = 0
+        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.25, random_state = 0)
         
         # Feature Scalling
         sc_x = StandardScaler()
         x_train = sc_x.fit_transform(x_train)
-        x_test = sc_x.transform(x_test)
-        x_val = sc_x.transform(x_val)
+        x_test = sc_x.fit_transform(x_test)
         
-        return x_train, x_test, y_train, y_test, x_val, y_val
+        return x_train, x_test, y_train, y_test
     
     
     def preprocess_input(self, filename):
