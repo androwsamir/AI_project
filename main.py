@@ -26,7 +26,6 @@ def main():
     print("Voting Module Accuracy : ",vc_accuracy , end = '\n')
     
     filename = input()
-    filename.encode('utf-8').strip()
     x_input = Preprocess.preprocess_input(filename)
     predict_ = Classification_1.classifition_input(x_input, classifier_log, classifier_svm, classifier_naive, logistic_regression_accuracy, svm_accuracy, NaiveBayse_accuracy, vc_accuracy, vc_clf)
     list1 = []

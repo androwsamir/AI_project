@@ -1,10 +1,12 @@
 # Data Preprocessing
 import pandas as pd
+import numpy as np
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.datasets import make_blobs
 from matplotlib import pyplot
+from sklearn.decomposition import PCA
 
 def outliers (df, ft):
     Q1 = df[ft].quantile(0.25)
@@ -33,13 +35,14 @@ class preprocess:
         for feature in l :
             index_list.extend(outliers(dataset1,feature))
         dataset = remove(dataset1,index_list)
-        
          
         dataset.drop('Index',axis = 'columns',inplace = True)
         
         x = dataset.iloc[:, :-1].values
         y = dataset.iloc[:, -1]  
-               
+            
+        dataset.corr()
+        
         # Encoding categorical data
         labelencoder_y = LabelEncoder()
         y = labelencoder_y.fit_transform(y)
@@ -56,10 +59,12 @@ class preprocess:
     
     
     def preprocess_input(self, filename):
+        filename.encode('utf-8').strip()
         dataset = pd.read_csv(filename)
+        dataset.drop('Index',axis = 'columns',inplace = True)
         dataset = dataset.dropna()
         dataset.drop_duplicates() 
-        x_input = dataset.iloc[:,:].values
+        x_input = dataset.iloc[:,:-1].values
         sc_x = StandardScaler()
         x_input = sc_x.fit_transform(x_input)
        
