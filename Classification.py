@@ -16,7 +16,7 @@ class Classification_:
         # Training SVM to the Training set
         classifier_svm = SVC(kernel = 'linear', random_state = 0, C = 0.02)
         
-        # Training Random Forest Classification model to the Training set
+        # Training Naive Bayse Classification model to the Training set
         classifier_naive = GaussianNB()
         
         classifier_log.fit(x_train,y_train)
@@ -70,5 +70,5 @@ class Classification_:
             vc_pre = vc_clf.predict(x_input)
             return vc_pre
         else :
-            des_pre = classifier_naive.predict(x_input)
-            return  des_pre
+            naive_pre = classifier_naive.predict(x_input)
+            return  naive_pre

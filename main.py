@@ -30,7 +30,10 @@ def main():
     predict_ = Classification_1.classifition_input(x_input, classifier_log, classifier_svm, classifier_naive, logistic_regression_accuracy, svm_accuracy, NaiveBayse_accuracy, vc_accuracy, vc_clf)
     list1 = []
     for ele in predict_ :
-        print(ele)
+        if(ele == 0):
+            print('B')
+        else :
+            print('M')
 
 if __name__ == '__main__':
     main()
