@@ -11,8 +11,8 @@ class Classification_:
     def classification(self, x_train , x_test , y_train):
         
         # Training Logistic Regression to the Training set
-        classifier_log = LogisticRegression(C = 0.05)
-        
+        classifier_log = LogisticRegression(C = 0.05)  # inverse of regularization strength
+                                                       # smaller values specify stronger regularization
         # Training SVM to the Training set
         classifier_svm = SVC(kernel = 'linear', random_state = 0, C = 0.02)
         

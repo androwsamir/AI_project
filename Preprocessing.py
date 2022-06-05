@@ -38,7 +38,6 @@ class preprocess:
         x = dataset.iloc[:, :-1].values
         y = dataset.iloc[:, -1]  
         
-        
         # Encoding categorical data
         labelencoder_y = LabelEncoder()
         y = labelencoder_y.fit_transform(y)
@@ -49,19 +48,18 @@ class preprocess:
         # Feature Scalling
         sc_x = StandardScaler()
         x_train = sc_x.fit_transform(x_train)   
-        x_test = sc_x.fit_transform(x_test)
+        x_test = sc_x.transform(x_test)
         
-        return x_train, x_test, y_train, y_test
+        return x_train, x_test, y_train, y_test, sc_x
     
     
-    def preprocess_input(self, filename):
+    def preprocess_input(self, filename, sc_x):
         filename.encode('utf-8').strip()
         dataset = pd.read_csv(filename)
         dataset.drop('Index',axis = 'columns',inplace = True)
         dataset = dataset.dropna()
         dataset.drop_duplicates()
         x_input = dataset.iloc[:,:-1].values
-        sc_x = StandardScaler()
-        x_input = sc_x.fit_transform(x_input)
+        x_input = sc_x.transform(x_input)
        
         return x_input
